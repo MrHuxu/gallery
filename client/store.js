@@ -1,10 +1,7 @@
 import thunk from 'redux-thunk';
 import { combineReducers, createStore, applyMiddleware } from 'redux';
 import { routerReducer, routerMiddleware } from 'react-router-redux';
-import createHistory from 'history/createBrowserHistory';
 import { composeWithDevTools } from 'redux-devtools-extension';
-
-export const history = createHistory();
 
 import test from './reducers/test-reducer';
 
