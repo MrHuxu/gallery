@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { select, range, max, scaleLinear, scaleBand, axisLeft, axisBottom } from 'd3';
+import { select, max, scaleBand, range, axisBottom, scaleLinear, axisLeft } from 'd3';
 
 import D3Container from './d3-container';
 
@@ -7,9 +7,15 @@ const testD3 = () => {
   const width = 400;
   const height = 400;
 
-  const svg = select('#full-bar-chart')
+  const svg = select('#interaction')
     .attr('width', width)
     .attr('height', height);
+  const circle = svg.append('circle')
+    .attr('cx', 100)
+    .attr('cy', 100)
+    .attr('r', 40);
+  circle.on('click', () => alert('click circle'));
+
   const padding = { left: 30, right: 30, top: 20, bottom: 20 };
 
   const dataset = [10, 20, 30, 40, 33, 24, 12, 5];
@@ -34,19 +40,16 @@ const testD3 = () => {
     .attr('y', d => padding.top + yScale(d))
     .attr('width', xScale.bandwidth() - rectPadding)
     .attr('height', d => height - padding.top - padding.bottom - yScale(d))
-    .attr('fill', 'steelblue');
-
-  svg.selectAll('.FullText')
-    .data(dataset)
-    .enter()
-    .append('text')
-    .attr('class', 'FullText')
-    .attr('transform', `translate(${padding.left}, ${padding.top})`)
-    .attr('x', (d, i) => xScale(i) + rectPadding / 2)
-    .attr('y', yScale)
-    .attr('dx', () => (xScale.bandwidth() - rectPadding) / 2 - 8)
-    .attr('dy', () => 20)
-    .text(d => d);
+    .style('fill', 'steelblue')
+    .on('mouseover', function (d, i) {
+      select(this).style('fill', 'yellow');
+    })
+    .on('mouseout', function (d, i) {
+      select(this)
+        .transition()
+        .duration(500)
+        .style('fill', 'steelblue');
+    });
 
   svg.append('g')
     .attr('transform', `translate(${padding.left},${padding.bottom + height - 40})`)
@@ -57,7 +60,7 @@ const testD3 = () => {
     .call(yAxis);
 };
 
-class FullBarChart extends Component {
+class Interaction extends Component {
   componentDidMount () {
     testD3();
   }
@@ -65,12 +68,12 @@ class FullBarChart extends Component {
   render () {
     return (
       <D3Container>
-        <h1> FullBarChart </h1>
+        <h1> Interaction </h1>
 
-        <svg id = 'full-bar-chart' />
+        <svg id = 'interaction' />
       </D3Container>
     );
   }
 }
 
-export default FullBarChart;
+export default Interaction;

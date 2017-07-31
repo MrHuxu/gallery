@@ -1,6 +1,8 @@
 import React from 'react';
 import { min, max, scaleLinear, scaleOrdinal } from 'd3';
 
+import D3Container from './d3-container';
+
 const Scale = () => {
   let dataset = [1.2, 2.3, 0.9, 1.5, 3.3];
   let linear = scaleLinear()
@@ -20,16 +22,10 @@ const Scale = () => {
   console.log(ordinal(4));
 
   return (
-    <div style = {{
-      display       : 'inline-block',
-      verticalAlign : 'top',
-      margin        : 10,
-      padding       : 15,
-      boxShadow     : 'inset 0 0 1em gray'
-    }}>
+    <D3Container>
       <h1> Scale </h1>
       <strong> Output in console </strong>
-    </div>
+    </D3Container>
   );
 };
 

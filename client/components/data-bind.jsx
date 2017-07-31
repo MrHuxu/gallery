@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { select } from 'd3';
 
+import D3Container from './d3-container';
+
 const testD3 = () => {
   let div = select('#data-bind')
     .attr('width', 300)
@@ -19,13 +21,7 @@ class DataBind extends Component {
 
   render () {
     return (
-      <div style = {{
-        display       : 'inline-block',
-        verticalAlign : 'top',
-        margin        : 10,
-        padding       : 15,
-        boxShadow     : 'inset 0 0 1em gray'
-      }}>
+      <D3Container>
         <h1> DataBind </h1>
 
         <div id = 'data-bind'>
@@ -33,7 +29,7 @@ class DataBind extends Component {
           <p> Pear </p>
           <p> Banana </p>
         </div>
-      </div>
+      </D3Container>
     );
   }
 }

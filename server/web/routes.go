@@ -12,7 +12,7 @@ var atPrd = os.Getenv("ENV") == "production"
 func Index(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.tmpl", gin.H{
 		"prd":   atPrd,
-		"title": "React & Go Boilerplate",
+		"title": "Gallery",
 	})
 }
 

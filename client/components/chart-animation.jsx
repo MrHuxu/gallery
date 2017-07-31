@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Style } from 'radium';
 import { select, max, scaleLinear, axisBottom, easeBounce } from 'd3';
 
+import D3Container from './d3-container';
+
 const testD3 = () => {
   let width = 300;
   let height = 300;
@@ -26,14 +28,11 @@ const testD3 = () => {
     .attr('y', (d, i) => i * rectHeight)
     .attr('width', 0)
     .attr('height', rectHeight - 2)
-    .attr('fill', 'red')
-    .transition()
-    .duration(500)
-    .delay((d, i) => i * 200)
-    .attr('fill', 'steelblue')
+    .style('fill', 'red')
     .transition()
     .duration(1500)
     .delay((d, i) => i * 200)
+    .style('fill', 'steelblue')
     .ease(easeBounce)
     .attr('width', linear);
 
@@ -81,13 +80,7 @@ class ChartAnimation extends Component {
 
   render () {
     return (
-      <div style = {{
-        display       : 'inline-block',
-        verticalAlign : 'top',
-        margin        : 10,
-        padding       : 15,
-        boxShadow     : 'inset 0 0 1em gray'
-      }}>
+      <D3Container>
         <Style
           rules = {{
             '.axis path, .axis line' : {
@@ -105,7 +98,7 @@ class ChartAnimation extends Component {
         <h1> ChartAnimation </h1>
 
         <svg id = 'chart-animation' />
-      </div>
+      </D3Container>
     );
   }
 };

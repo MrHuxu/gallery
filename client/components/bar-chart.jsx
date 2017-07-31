@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Style } from 'radium';
 import { select, max, scaleLinear, axisBottom } from 'd3';
 
+import D3Container from './d3-container';
+
 const testD3 = () => {
   let width = 300;
   let height = 300;
@@ -41,13 +43,7 @@ class BarChart extends Component {
 
   render () {
     return (
-      <div style = {{
-        display       : 'inline-block',
-        verticalAlign : 'top',
-        margin        : 10,
-        padding       : 15,
-        boxShadow     : 'inset 0 0 1em gray'
-      }}>
+      <D3Container>
         <Style
           rules = {{
             '.axis path, .axis line' : {
@@ -65,7 +61,7 @@ class BarChart extends Component {
         <h1> BarChart </h1>
 
         <svg id = 'bar-chart' />
-      </div>
+      </D3Container>
     );
   }
 };
