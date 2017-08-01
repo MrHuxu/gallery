@@ -3,6 +3,14 @@ import { select } from 'd3';
 
 import D3Container from './d3-container';
 
+const songList = [
+  { id: 2009803, name: 'Be Somebody' },
+  { id: 201975, name: '深谷幽兰' },
+  { id: 108983, name: '会有那么一天' },
+  { id: 496549, name: 'Chiru' },
+  { id: 22822602, name: '風の詩' }
+];
+
 const initList = () => {
   const width = 200;
   const height = 200;
@@ -11,12 +19,11 @@ const initList = () => {
     .attr('width', width)
     .attr('height', height);
 
-  const songNames = ['name1', 'name2', 'name3', 'name4', 'name5'];
   svg.selectAll('text')
-    .data(songNames)
+    .data(songList)
     .enter()
     .append('text')
-    .text(d => d)
+    .text(d => d.name)
     .attr('x', 30)
     .attr('y', (d, i) => (i + 1) * 20 + 180)
     .attr('opacity', 0)
@@ -30,7 +37,7 @@ const initList = () => {
 };
 
 const animate = steps => {
-  const change = (steps % 5 + 5) % 5;
+  const change = (5 - steps % 5) % 5;
 
   select('#song-list').selectAll('text')
     .transition()
@@ -57,15 +64,28 @@ class SongList extends Component {
   _change = () => {
     const { steps } = this.state;
     this.setState({
-      steps : steps - 1
+      steps : steps + 1
     });
   }
 
   render () {
+    const { steps } = this.state;
+
     return (
       <D3Container>
         <h1> SongList </h1>
 
+        <span>
+          <iframe
+            frameBorder = 'no'
+            border = '0'
+            marginWidth = '0'
+            marginHeight = '0'
+            width = {330}
+            height = {186}
+            src = {`//music.163.com/outchain/player?type=2&id=${songList[steps % 5].id}&auto=1&height=66`}
+          />
+        </span>
         <svg id = 'song-list' />
         <button onClick = {this._change}> Switch </button>
       </D3Container>
