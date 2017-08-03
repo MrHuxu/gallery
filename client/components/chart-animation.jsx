@@ -31,7 +31,7 @@ const testD3 = () => {
     .style('fill', 'red')
     .transition()
     .duration(1500)
-    .delay((d, i) => i * 200)
+    .delay((d, i) => i * 200 + 1500)
     .style('fill', 'steelblue')
     .ease(easeBounce)
     .attr('width', linear);
@@ -48,6 +48,7 @@ const testD3 = () => {
     .style('fill', 'green');
   circle1.transition()
     .duration(1000)
+    .delay(1500)
     .attr('cx', 300);
 
   const circle2 = svg.append('circle')
@@ -57,6 +58,7 @@ const testD3 = () => {
     .style('fill', 'green');
   circle2.transition()
     .duration(1500)
+    .delay(1500)
     .attr('cx', 300)
     .style('fill', 'red');
 
@@ -67,6 +69,7 @@ const testD3 = () => {
     .style('fill', 'green');
   circle3.transition()
     .duration(2000)
+    .delay(1500)
     .ease(easeBounce)
     .attr('cx', 300)
     .style('color', 'red')
