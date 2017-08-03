@@ -5,9 +5,10 @@ import (
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"os"
+	"strings"
 )
 
-var atPrd = os.Getenv("ENV") == "production"
+var atPrd = strings.ToLower(os.Getenv("ENV")) == "production"
 
 func Index(c *gin.Context) {
 	c.HTML(http.StatusOK, "index.tmpl", gin.H{
