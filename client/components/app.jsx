@@ -4,11 +4,20 @@ import Menu from './menu';
 import PhotoGrid from './photo-grid';
 import SongList from './song-list';
 
+import LeftPanel from './left-panel';
+import RightPanel from './right-panel';
+
 const App = () => (
   <div>
     <Menu />
-    <PhotoGrid />
-    <SongList />
+
+    <LeftPanel>
+      <SongList />
+    </LeftPanel>
+
+    <RightPanel>
+      <PhotoGrid />
+    </RightPanel>
   </div>
 );
 
